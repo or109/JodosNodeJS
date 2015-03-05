@@ -12,7 +12,7 @@ var url =  require('url');
 var sys = require('sys');
 var context = require('rabbit.js').createContext('amqp://localhost');
 var S = require('string');
-fs = require('fs');
+var fs = require('fs');
 
 var pull = context.socket('PULL');
 //var push = context.socket('PUSH');
@@ -20,9 +20,7 @@ var pull = context.socket('PULL');
 //var msg = "http://www.ebay.co.uk/bhp/tobacco-case";
 
 pull.setEncoding('utf8');
-
 pull.connect('TEST1');
-
 
 
 pull.on('data', function T(m) {
@@ -83,13 +81,14 @@ var req = http.request(options, function(res)
  	 	//console.log(result + ' > result.csv' );
     console.log('fdsfs' );
 
-    var wordslist = ['shop', 'shopping','SHOP','Store', 'ebay','eBay','Ebay'];
-    console.log(S(result).count("shop"));
+    var wordslist = ['shop', 'shopping','SHOP','Store', 'ebay','eBay','Ebay', 'Boxer','console'];
 
     wordslist.forEach(function(entry) {
         //console.log(entry);
-        console.log(entry + ' - '+S(result).count(entry));
+        console.log(entry + ' - '+S(as).count(entry));
     });
+
+    //console.log(as);
 
 
     // var a = ["a", "b", "c"];
