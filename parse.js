@@ -212,7 +212,38 @@ pull.on('data', function T(m) {
                 WriteToFile(arr,'meta-links-result.csv',m);
             }
             
+              if (typeof h1 === 'undefined')
+                console.log(" error connect to  h1 - " + m); 
+            else {
+                
+                 
+                text = findAllTextInDom(h1); 
+                console.log("OK h1 - " + text);
+                var arr = CountWordsInText(text);
+                WriteToFile(arr,'meta-h1-result.csv',m);
+            }
+            
+               if (typeof h2 === 'undefined')
+                console.log(" error connect to  h2 - " + m); 
+            else {
+                
+                 
+                text = findAllTextInDom(h2); 
+                console.log("OK h2 - " + text);
+                var arr = CountWordsInText(text);
+                WriteToFile(arr,'meta-h2-result.csv',m);
+            }   
 
+            if (typeof h3 === 'undefined')
+                console.log(" error connect to  h3 - " + m); 
+            else {
+                
+                 
+                text = findAllTextInDom(h3); 
+                console.log("OK h3 - " + text);
+                var arr = CountWordsInText(text);
+                WriteToFile(arr,'meta-h3-result.csv',m);
+            } 
 
         });
         
