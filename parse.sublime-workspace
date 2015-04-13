@@ -1,0 +1,277 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"body",
+				"bodyParser"
+			],
+			[
+				"main",
+				"mainservice"
+			],
+			[
+				"req",
+				"require"
+			],
+			[
+				"err",
+				"error"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "parse.js",
+			"settings":
+			{
+				"buffer_size": 4414,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "rabbit.js",
+			"settings":
+			{
+				"buffer_size": 1453,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Daniel/Downloads/nodejs-master/nodejs-master"
+	],
+	"file_history":
+	[
+		"/C/Users/Daniel/Downloads/Final - NEW/Final/FinalMessanger/Messanger/src/HTTPClient.cpp",
+		"/C/Users/Daniel/Downloads/Final - NEW/Final/FinalMessanger/Messanger/src/UDPMessenger.cpp",
+		"/C/Users/Daniel/Downloads/tar3-4/WIN_SRC/SshMenu.java",
+		"/C/inetpub/wwwroot/Jodos/app/controllers/homeController.js",
+		"/C/inetpub/wwwroot/Jodos/app/services/codeService.js",
+		"/C/inetpub/wwwroot/Jodos/app/controllers/codesController.js",
+		"/C/inetpub/wwwroot/Jodos/app/services/authService.js",
+		"/C/inetpub/wwwroot/Jodos/index.html",
+		"/C/inetpub/wwwroot/Jodos/app/views/home.html",
+		"/C/inetpub/wwwroot/Jodos/app/services/authInterceptorService.js",
+		"/C/inetpub/wwwroot/Jodos/app/controllers/usersController.js",
+		"/C/inetpub/wwwroot/app/views/login.html",
+		"/C/inetpub/wwwroot/app/controllers/loginController.js",
+		"/C/inetpub/wwwroot/index.html",
+		"/C/inetpub/wwwroot/app/controllers/indexController.js"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"C:\\Users\\Daniel\\Desktop\\TeamuP",
+			"C:\\Users\\Daniel\\Desktop\\JodosClient"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"routs",
+			"controller",
+			"ng-controller",
+			"Haim",
+			"haim",
+			"apiServiceBaseUri",
+			"הוס",
+			"addus",
+			"location.path",
+			"fonts.google"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "parse.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4414,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3128,
+								3128
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 2066.0,
+						"translation.y": 1674.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "rabbit.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1453,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								806,
+								1054
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 1210.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "parse.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 217.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
