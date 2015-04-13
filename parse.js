@@ -87,6 +87,23 @@ function findAllTextInDom(currentNode) {
         return TheTexts;
  } 
 
+function findAllClassesInDom(currentNode) {
+    
+    var TheTexts = "";
+    if (typeof currentNode === 'undefined'){}
+    else{
+    currentNode.forEach(function (entry) {
+        if ("tag" == entry.type) {
+            if (entry.attribs)
+                 if ( entry.attribs.class)
+             {TheTexts += entry.attribs.class + " ";}
+            TheTexts += findAllClassesInDom(entry.children);
+        }
+     });
+    }
+        return TheTexts;
+ } 
+
 pull.on('data', function T(m) {
     //              console.log("message is - " + m);
     var Theurl = url.parse(m);
@@ -172,7 +189,7 @@ pull.on('data', function T(m) {
             else {
                 
                 var text = keywords[0].attribs.content;
-                console.log("OK keywords - " + text);
+              //  console.log("OK keywords - " + text);
                 var arr = CountWordsInText(text);
                 WriteToFile(arr,'meta-keywords-result.csv',m);
             }
@@ -184,7 +201,7 @@ pull.on('data', function T(m) {
                 // sys.puts(sys.inspect(header1, false, null));
                 // text =JSON.st ringify(header1); 
                 text = findAllTextInDom(header1); 
-                 console.log("OK header1 - " + text);
+              //   console.log("OK header1 - " + text);
                 var arr = CountWordsInText(text);
                 WriteToFile(arr,'meta-header1-result.csv',m);
             }
@@ -196,7 +213,7 @@ pull.on('data', function T(m) {
                 
                  //sys.puts(sys.inspect(title, false, null));
                 text = title[0].children[0].raw; 
-                console.log("OK title - " + text);
+              //  console.log("OK title - " + text);
                 var arr = CountWordsInText(text);
                 WriteToFile(arr,'meta-title-result.csv',m);
             }
@@ -218,18 +235,18 @@ pull.on('data', function T(m) {
                 
                  
                 text = findAllTextInDom(h1); 
-                console.log("OK h1 - " + text);
+              //  console.log("OK h1 - " + text);
                 var arr = CountWordsInText(text);
                 WriteToFile(arr,'meta-h1-result.csv',m);
             }
-            
+
                if (typeof h2 === 'undefined')
                 console.log(" error connect to  h2 - " + m); 
             else {
                 
                  
                 text = findAllTextInDom(h2); 
-                console.log("OK h2 - " + text);
+              //  console.log("OK h2 - " + text);
                 var arr = CountWordsInText(text);
                 WriteToFile(arr,'meta-h2-result.csv',m);
             }   
@@ -240,10 +257,53 @@ pull.on('data', function T(m) {
                 
                  
                 text = findAllTextInDom(h3); 
-                console.log("OK h3 - " + text);
+               // console.log("OK h3 - " + text);
                 var arr = CountWordsInText(text);
                 WriteToFile(arr,'meta-h3-result.csv',m);
             } 
+
+             if (typeof footer1 === 'undefined')
+                console.log(" error connect to  footer1 - " + m); 
+            else {
+                text = findAllTextInDom(footer1); 
+                // console.log("OK footer1 - " + text);
+                var arr = CountWordsInText(text);
+                WriteToFile(arr,'meta-footer1-result.csv',m);
+            }
+
+            {
+                text = m; 
+                var arr = CountWordsInText(text);
+                WriteToFile(arr,'meta-url-result.csv',m);
+            }
+
+            
+            //console.log(findAllClassesInDom(handler.dom));
+
+            if (typeof handler.dom === 'undefined')
+                console.log(" error searching in classes in handler.dom - " + m); 
+            else {
+                text = findAllTextInDom(handler.dom); 
+                var arr = CountWordsInText(text);
+                WriteToFile(arr,'meta-classes-result.csv',m);
+            }
+           
+
+
+            // ====== TESTING THE CONTACT URL   TODO:
+            /*var Theurl = url.parse(m);
+            var options = {
+            host: Theurl.host,
+            port: 80,
+            path: '/contact',
+            method: 'GET'
+        };
+        options.headers = {
+            'User-Agent': 'javascript'
+        };
+    */
+    //===========
+
 
         });
         
