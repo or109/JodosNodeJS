@@ -1,0 +1,43 @@
+var context = require('rabbit.js').createContext('amqp://localhost');
+var push = context.socket('PUSH');
+
+push.connect('TEST1', function() {
+	push.write("http://www.shure.com/americas/products/earphones-headphones/se-earphones/se215-sound-isolating-earphones");
+	push.write("http://www.shure.com/americas/where-to-buy/in-store");
+	push.write("http://www.head-fi.org/t/696311/shure-se215-ranting-read-this-before-buying-wrong-headphones-or-iem");
+	push.write("http://www.engadget.com/products/shure/se215/");
+	push.write("http://www.ebay.co.uk/bhp/shure-se215");
+	push.write("http://www.shopbot.ca/pp-shure-se215-k-shure-price-320112.html");
+	push.write("http://www.banggood.com/Eachine-E80-In-Ear-Earbuds-Hybrid-Iron-Bass-Stereo-Headset-Red-p-971941.html?utm_source=google&utm_medium=cpc&utm_campaign=Selc-MP-eachineearphone&utm_content=vincy&gclid=CjwKEAjw0q2pBRC3jrb24JjE8VgSJAAyIzAd5a6ZBQCyzAhrrJtOIJahhQMsMmaPD5mws7LlTd8XthoCMCrw_wcB - מודעה לא רלוונטית שהופיעה עבור החיפוש");
+	push.write("http://www.whathifi.com/shure/se215/review");
+	push.write("http://www.staticice.com.au/cgi-bin/search.cgi?q=shure%20se215");
+	push.write("http://www.expertreviews.co.uk/tvs-entertainment/headphones/51437/shure-se215-review");
+	push.write("http://pricespy.co.nz/product.php?p=951368");
+	push.write("http://www.amazon.co.uk/Shure-SE215-In-Ear-Isolating-Earphones-Clear/dp/B004U9NH3E");
+	push.write("http://www.aliexpress.com/w/wholesale-shure-se215.html");
+	push.write("http://www.techradar.com/reviews/audio-visual/hi-fi-and-audio/headphones/shure-se215-1288755/review");
+	push.write("http://www.cnet.com/products/shure-se215-black/user-reviews/");
+	push.write("http://www.myshopping.com.au/PR--382554_Shure_SE215_Headphone");
+	push.write("http://www.macworld.co.uk/review/headphones/shure-se215-review-3309828/");
+	push.write("http://www.ebay.com/gds/Shure-SE215-Vs-The-House-of-Marley-EM-JE020-SU-/10000000177710607/g.html");
+	push.write("http://www.trustedreviews.com/shure-se215-review");
+	push.write("http://theheadphonelist.com/earphone-buyers-guide/");
+	push.write("http://lifehacker.com/5800772/how-to-choose-the-perfect-pair-of-headphones");
+	push.write("http://www.babakama.co.il/links/cat/id/49");
+	push.write("http://www.feeder.co.il/article-2-israeli-shopping-sites-for-buying-online-1000735579");
+	push.write("http://www.mako.co.il/nexter-internet/shopping-online/Article-bc0e577fd3dc941006.htm");
+	push.write("http://www.haadumim.com/?tag=%D7%A7%D7%A0%D7%99%D7%99%D7%AA-%D7%9E%D7%A0%D7%99%D7%94-%D7%94%D7%A4%D7%95%D7%A2%D7%`");
+	push.write("http://www.beg4bags.co.il/%D7%94%D7%96%D7%9E%D7%A0%D7%AA-%D7%AA%D7%97%D7%A4%D7%95%D7%A9%D7%95%D7%AA-%D7%91%D7%90%D7%99%D7%A0%D7%98%D7%A8%D7%A0%D7%98-%D7%9E%D7%97%D7%95%D7%9C-%D7%97%D7%9C%D7%A7-%D7%90/");
+	push.write("http://www.boxwind.com/popular/he/%D7%97%D7%A0%D7%95%D7%AA-%D7%90%D7%95%D7%A4%D7%A0%D7%94");
+	push.write("http://www.haadumim.com/?tag=%D7%A7%D7%A0%D7%99%D7%99%D7%AA-%D7%9E%D7%A0%D7%99%D7%94-%D7%94%D7%A4%D7%95%D7%A2%D7%9C");
+	push.write("http://www.kipa.co.il/community/show/5558571");
+	push.write("http://www.hoow.co.il/2014/09/23/%D7%94%D7%96%D7%9E%D7%A0%D7%AA-%D7%AA%D7%97%D7%A4%D7%95%D7%A9%D7%95%D7%AA-%D7%91%D7%90%D7%99%D7%A0%D7%98%D7%A8%D7%A0%D7%98-%D7%90%D7%AA%D7%A8%D7%99%D7%9D-%D7%9E%D7%95%D7%9E%D7%9C%D7%A6%D7%99%D7%9D/");
+	push.write("http://www.yahav.org/equipment/recommanded_equipment/");
+	push.write("http://www.fullgaz.co.il/forums/showthread.php?t=69584");
+	push.write("http://www.kishuron.com/article.php?id=2085&title=%D7%A7%D7%A0%D7%99%D7%99%D7%AA+%D7%91%D7%92%D7%93%D7%99+%D7%99%D7%9C%D7%93%D7%99%D7%9D+%D7%A9%D7%AA%D7%A9%D7%90%D7%99%D7%A8+%D7%9C%D7%9B%D7%9D+%D7%A2%D7%95%D7%93%D7%A3");
+	push.write("http://www.printime.co.il/16584/%D7%A7%D7%A0%D7%99%D7%95%D7%AA-%D7%91%D7%97%D7%95-%D7%9C");
+	push.write("http://www.tapuz.co.il/forums2008/viewmsg.aspx?forumid=747&messageid=161840866");
+	push.write("http://www.fxp.co.il/showthread.php?t=7400936");
+	push.write("http://www.yad2.co.il/Yad2/Yad2.php?SalesCatID=18&SalesSubCatID=390");
+ });
+
