@@ -116,7 +116,7 @@ function Sinay(countWordslist, fileName, URL) {
 
     fs.appendFile(fileName, result, function (err) {
         if (err) return console.log(err);
-        console.log(result + ' >' + fileName);
+       // console.log(result + ' >' + fileName);
     });
 }
 
@@ -126,7 +126,7 @@ function writeJson(json) {
 
     fs.appendFile("list.json", write , function (err) {
         if (err) return console.log(err);
-        console.log("json" + ' >' + "list.json");
+     //   console.log("json" + ' >' + "list.json");
     });
 }
 
@@ -183,13 +183,19 @@ function findAllTextInDom(currentNode) {
    
 
 
-    console.log(message);
+    //console.log(message);
     
     var Theurl = url.parse(message.Url);
-    console.log(Theurl);
+   // console.log(Theurl);
+   var port = 80;
+   if(Theurl.protocol == "http")
+        port = 80;
+    else if (Theurl.protocol == "https")
+         port = 443;
     var options = {
+        followAllRedirects: true,
         host: Theurl.host,
-        port: 80,
+        port: port,
         path: Theurl.path,
         method: 'GET'
     };
@@ -228,8 +234,12 @@ function findAllTextInDom(currentNode) {
             //      console.log('\n\n=========RESPONSE END===============');
             //        console.log(Rhtml);
             parser.done();
-            //sys.puts(sys.inspect(handler.dom, false, null));
+               console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+           // sys.puts(sys.inspect(handler.dom, false, null));
 			// meta description
+            console.log("Url - " + message.Url);
+            console.log("Price -" + message.Price);
+            //console.log(Theurl);
             var description = htmlparser.DomUtils.getElements({ tag_name: "meta", name: "description" }, handler.dom);
 
 			//meta keywords
@@ -260,13 +270,13 @@ function findAllTextInDom(currentNode) {
             console.log("-------------------------------------");
 
             var sitePricesList = RegexPage(handler.dom,"/");
-			console .log(JSON.stringify(sitePricesList))
+			//console .log(JSON.stringify(sitePricesList))
             console.log("-------------------------------------");
             var regex1 = JSON.stringify(handler.dom);
 
             fs.appendFile("regex1.json", regex1 , function (err) {
                 if (err) return console.log(err);
-                console.log('regex done');
+                //console.log('regex done');
             });
 
 
@@ -283,7 +293,7 @@ function findAllTextInDom(currentNode) {
         }
         else {
             var text = description[0].attribs.content;
-            console.log("OK description - " + text);
+           // console.log("OK description - " + text);
             var arr = CountWordsInText(text,'description',[ 'shop', 'sale', 'price', 'store', 'buy', 'deal']);
 //                WriteToFile(arr,'meta-description-result.csv',message.Url);
 
@@ -492,7 +502,7 @@ arr.forEach(function (entry) {
 			sitePricesList.forEach(function (entry) {
 				if (typeof entry.Price != 'undefined'){
 					
-					if(p * 0.5 < entry.Price & p * 1.5 > entry.Price){
+					if(p * 0.4 < entry.Price & p * 1.6 > entry.Price){
 						PriceList.push({'Price':entry.Price,'Path':entry.Path});
 					}
 					if(pathCount.get(entry.Path) == null ){
@@ -524,19 +534,25 @@ arr.forEach(function (entry) {
 				index++;
 				
 			});
-			console.log(PriceList);
+			//console.log(PriceList);
 			console.log( Min + " - " + Max);
+             console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			finalResult.predictMinPrice = Min ;
 			finalResult.predictMaxPrice = Max;
             finalResult.Token = message.Token;
 			
-            push.connect('FinalOUT', function() {
+
+            if(Min != 99999){
 
 
-                console.log('Write url ' + JSON.stringify(finalResult) + 'To Queue');
-                push.write(JSON.stringify(finalResult));
-                //push.write("features.list");
-            });
+                push.connect('FinalOUT', function() {
+
+
+                    console.log('Write url ' + JSON.stringify(finalResult) + 'To Queue');
+                    push.write(JSON.stringify(finalResult));
+                    //push.write("features.list");
+                });
+            }
         }
         else{
             console.log("Url - " + message.Url + " Faild in one of the places!");
