@@ -10,12 +10,7 @@ var BigNumber = require('bignumber.js');
 
 var context = require('rabbit.js').createContext('amqp://localhost');
 
-options = {
-//	normalizeOutputProbabilities : true,
-	//calculateRelativeProbabilities : true
-
-}
-var MyClassifier = new limdu.classifiers.NeuralNetwork(options);
+var MyClassifier = new limdu.classifiers.NeuralNetwork();
 
 var obj = JSON.parse(fs.readFileSync('Midgam.json', 'utf8'));
 
@@ -51,31 +46,16 @@ out='No';
 
 
  });
+
+
+
 //console.log(json);
-
- //console.log(line);
-//var jline = JSON.parse(line);
- //var json={input : jline , output : 1 };
-
-//jsons = '{ "o" : 2}';
-//console.log(json);
-/*
-MyClassifier.trainBatch([
-    {input: { "r": 1, "g": 12 }, output: 'yes'},  // yes
-    {input: { "r": 8, "g": 3}, output: 'yes'}, // no
-    {input: { "r":13 , "g": 30}, output: 'no'},
-      // white
-    ]);
-*/
-
+var jjson = JSON.parse(fs.readFileSync('Network.json', 'utf8'));
+MyClassifier.fromJSON(jjson);
 
 var pull = context.socket('PULL');
-
-
-MyClassifier.trainBatch(json);
-
-var TheNetwork = MyClassifier.toJSON();
-
+//var TheNetwork = MyClassifier.toJSON();
+var TheNetwork = {};
 fs.appendFile("ResentNetwok.json", JSON.stringify(TheNetwork), function (err) {
     });
 console.log("Server is up!");
@@ -101,7 +81,7 @@ pull.on('data', function T(m) {
 	toClssify = JSON.parse(m);
 	//console.log(toClssify);	
 	var result;
-	var nresult = MyClassifier.classify(toClssify,1);
+	var nresult = MyClassifier.classify(toClssify);
 	//if (nresult > 0.49999999) {
 	//result ="yes";
 

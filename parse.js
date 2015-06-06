@@ -8,11 +8,14 @@
  */
 
  var net = require("net");
- var http = require("http");
+// var http = require("http");
+var http = require('follow-redirects').http
+ var request = require('request');
  var htmlparser = require("htmlparser");
  var url = require('url');
  var sys = require('sys');
 var limdu = require('limdu');
+var fx = require("money");
  var context = require('rabbit.js').createContext('amqp://localhost');
 //var amqp = require('amqp'); 
 //var context = require('rabbit.js').createContext(url);
@@ -39,6 +42,12 @@ options = {
 }
 var MyClassifier = new limdu.classifiers.NeuralNetwork(options);
 
+
+
+
+var jjson = JSON.parse(fs.readFileSync('Network.json', 'utf8'));
+MyClassifier.fromJSON(jjson);
+
 function RegexPage(currentNode, Path) {
     PriceMaxlength = 20;
     //sys.puts(sys.inspect(currentNode, false, null));    
@@ -52,8 +61,11 @@ function RegexPage(currentNode, Path) {
                 if(typeof entry === 'undefined'){}
                     else{    
                         if ("text" == entry.type) {
-							var pat = /\$\s*(\d+([.]\d+)?)|(\d+([.]\d+)?)\s*\$|\&\#36\;\s*(\d+([.]\d+)?)|(\d+([.]\d+)?)\s*\&\#36\;/  
-                            var Price = entry.data.match(pat);
+							              var DollarPat = /\$\s*(\d+([.]\d+)?)|(\d+([.]\d+)?)\s*\$|\&\#36\;\s*(\d+([.]\d+)?)|(\d+([.]\d+)?)\s*\&\#36\;/;  
+                            var EuroPat = /\€\s*(\d+([.]\d+)?)|(\d+([.]\d+)?)\s*\€/;
+                            var ShekelPat = /\₪\s*(\d+([.]\d+)?)|(\d+([.]\d+)?)\s*\₪|ILS\s*(\d+([.]\d+)?)|(\d+([.]\d+)?)\s*ILS/;
+                            var PoundPat = /[\£\₤]\s*(\d+([.]\d+)?)|(\d+([.]\d+)?)\s*[\£\₤]/;
+                            var Price = entry.data.match(DollarPat);
             //console.log("Checking (" + entry.data + " ) " );
             if (Price != null & entry.data.length <= PriceMaxlength){
                 if(Price[1] != null)
@@ -62,6 +74,7 @@ function RegexPage(currentNode, Path) {
                     RegexResults.push({'Price':Price[5] , 'Path':Path});
                 TheTexts += " "+ Price;
                 console.log("Found - " + entry.data + " | " +  Price  );
+                console.log("Path - " + Path);
         }
     }
     else if ("tag" == entry.type) {
@@ -189,7 +202,7 @@ function findAllTextInDom(currentNode) {
    // console.log(Theurl);
    var port = 80;
    if(Theurl.protocol == "http")
-        port = 80;
+        port =80;
     else if (Theurl.protocol == "https")
          port = 443;
     var options = {
@@ -230,11 +243,12 @@ function findAllTextInDom(currentNode) {
         //
         // On End
         //
-        res.on('end', function (result) {
+        res.on('end', function () {
             //      console.log('\n\n=========RESPONSE END===============');
-            //        console.log(Rhtml);
+            
             parser.done();
                console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+               console.log(res.statusCode);
            // sys.puts(sys.inspect(handler.dom, false, null));
 			// meta description
             console.log("Url - " + message.Url);
@@ -482,10 +496,10 @@ arr.forEach(function (entry) {
             inners = inners.substring(0, inners.length - 1);
             inners+="}";
 			var finalResult = {'Url':message.Url};
-			var jjson = JSON.parse(fs.readFileSync('Network.json', 'utf8'));
-			MyClassifier.fromJSON(jjson);
 			
-			var classifyResult = MyClassifier.classify(inners,1);
+			
+      console.log(inners);
+			var classifyResult = MyClassifier.classify(JSON.parse(inners));
 			console.log(classifyResult);
 			
 			if (classifyResult > 0.50000000)
@@ -518,6 +532,7 @@ arr.forEach(function (entry) {
 			var Max = -99999;
 			var Min = 99999;
 			var index = 0;
+      console.log(PriceList);
 			PriceList.forEach(function (entry){
 				if(pathCount.get(entry.Path) != null)
 					if(pathCount.get(entry.Path).Count > 2){
@@ -534,14 +549,20 @@ arr.forEach(function (entry) {
 				index++;
 				
 			});
-			//console.log(PriceList);
+			console.log(PriceList);
 			console.log( Min + " - " + Max);
              console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			finalResult.predictMinPrice = Min ;
 			finalResult.predictMaxPrice = Max;
             finalResult.Token = message.Token;
-			
+			 /* push.connect('OUT', function() {
 
+
+                    console.log('Write url ' + JSON.stringify(inners) + 'To Queue');
+                    push.write(JSON.stringify(inners));
+                    //push.write("features.list");
+                });
+        */
             if(Min != 99999){
 
 
@@ -557,7 +578,9 @@ arr.forEach(function (entry) {
         else{
             console.log("Url - " + message.Url + " Faild in one of the places!");
 
+
         }
+      
             // ====== TESTING THE CONTACT URL   TODO:
             /*var Theurl = url.parse(message.Url);
             var options = {
