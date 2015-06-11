@@ -16,9 +16,10 @@ var obj = JSON.parse(fs.readFileSync('Midgam.json', 'utf8'));
 
 console.log(obj.length);
 
-
 var json= [];
+
  obj.forEach(function (url) {
+
  	inner = {};
  	inners = '{';
  	url.list.forEach(function (list) {
@@ -33,15 +34,7 @@ var json= [];
  inner = JSON.parse(inners);
 
 
-if (url.result == 1){
-	out='Yes';
 
-}
-else
-{
-
-out='No';
-}
  json.push({input : inner, output: url.result });
 
 
@@ -49,13 +42,12 @@ out='No';
 
 
 
-//console.log(json);
-var jjson = JSON.parse(fs.readFileSync('Network.json', 'utf8'));
-MyClassifier.fromJSON(jjson);
+//var jjson = JSON.parse(fs.readFileSync('Network.json', 'utf8'));
+MyClassifier.trainBatch(json);
 
 var pull = context.socket('PULL');
-//var TheNetwork = MyClassifier.toJSON();
-var TheNetwork = {};
+var TheNetwork = MyClassifier.toJSON();
+//var TheNetwork = {};
 fs.appendFile("ResentNetwok.json", JSON.stringify(TheNetwork), function (err) {
     });
 console.log("Server is up!");
