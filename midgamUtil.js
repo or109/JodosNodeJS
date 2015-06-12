@@ -457,6 +457,7 @@ pull.on('data', function T(m) {
                 //Sinay(features,'Midgam.csv');
                 console.log(features.result + " - " );
                 console.log(message);
+                console.log(inners);
                 var push = context.socket('PUSH');
                 var inners = "{";
                 features.list.forEach(function(entry) {

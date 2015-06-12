@@ -42,13 +42,14 @@ var json= [];
 
 
 
-//var jjson = JSON.parse(fs.readFileSync('Network.json', 'utf8'));
-MyClassifier.trainBatch(json);
+var jjson = JSON.parse(fs.readFileSync('ResentNetwok.json', 'utf8'));
+//MyClassifier.trainBatch(json);
+MyClassifier.fromJSON(jjson);
 
 var pull = context.socket('PULL');
 var TheNetwork = MyClassifier.toJSON();
 //var TheNetwork = {};
-fs.appendFile("ResentNetwok.json", JSON.stringify(TheNetwork), function (err) {
+fs.writeFile("ResentNetwok.json", JSON.stringify(TheNetwork), function (err) {
     });
 console.log("Server is up!");
 

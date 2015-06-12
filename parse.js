@@ -333,7 +333,7 @@ pull.on('data', function T(m) {
                 //console.log('regex done');
             });
 
-             fs.writeFile("RecentSite.json", regex1, function(err) {
+            fs.writeFile("RecentSite.json", regex1, function(err) {
                 if (err) return console.log(err);
                 //console.log('regex done');
             });
@@ -345,8 +345,8 @@ pull.on('data', function T(m) {
             };
 
             if (typeof description[0] === 'undefined') {
-                console.log(" error connect to  description - " + message.Url + "data" + description);
-                var arr = CountWordsInText("", 'description', ['shop', 'sale', 'price', 'store', 'buy', 'deal']);
+                console.log(" error connect to  description - " + message.Url + " data - " + description);
+                var arr = CountWordsInText("", 'description', ['shop', 'sale', 'price', 'buy']);
 
                 arr.forEach(function(entry) {
                     features.list.push(entry);
@@ -355,7 +355,7 @@ pull.on('data', function T(m) {
             } else {
                 var text = description[0].attribs.content;
                 // console.log("OK description - " + text);
-                var arr = CountWordsInText(text, 'description', ['shop', 'sale', 'price', 'store', 'buy', 'deal']);
+                var arr = CountWordsInText(text, 'description', ['shop', 'sale', 'price', 'buy']);
                 //                WriteToFile(arr,'meta-description-result.csv',message.Url);
 
 
@@ -366,7 +366,7 @@ pull.on('data', function T(m) {
 
             if (typeof keywords[0] === 'undefined') {
                 console.log(" error connect to  keywords - " + message.Url);
-                var arr = CountWordsInText("", 'keywords', ['shop', 'sale', 'store', 'buy']);
+                var arr = CountWordsInText("", 'keywords', ['shop']);
                 arr.forEach(function(entry) {
                     features.list.push(entry);
                 });
@@ -375,7 +375,7 @@ pull.on('data', function T(m) {
 
                 var text = keywords[0].attribs.content;
                 //  console.log("OK keywords - " + text);
-                var arr = CountWordsInText(text, 'keywords', ['shop', 'sale', 'store', 'buy']);
+                var arr = CountWordsInText(text, 'keywords', ['shop']);
                 //WriteToFile(arr,'meta-keywords-result.csv',message.Url);
 
                 arr.forEach(function(entry) {
@@ -400,27 +400,6 @@ pull.on('data', function T(m) {
                         }
                         */
 
-
-            if (typeof title[0] === 'undefined') {
-
-                console.log(" error connect to  title - " + message.Url);
-                Success = false;
-            } else {
-                if (typeof title[0].children === 'undefined') {
-                    console.log(" error connect to  title - " + message.Url);
-                    Success = false;
-                } else {
-                    //sys.puts(sys.inspect(title, false, null));
-                    text = title[0].children[0].raw;
-                    //  console.log("OK title - " + text);
-                    var arr = CountWordsInText(text, 'title', ['shop', 'sale', 'price', 'buy']);
-                    //                WriteToFile(arr,'meta-title-result.csv',message.Url);
-
-                    arr.forEach(function(entry) {
-                        features.list.push(entry);
-                    });
-                }
-            }
             if (typeof links === 'undefined') {
                 console.log(" error connect to  links - " + message.Url);
                 Success = false;
@@ -429,7 +408,7 @@ pull.on('data', function T(m) {
 
                 text = findAllTextInDom(links);
                 //console.log("OK links - " + text);
-                var arr = CountWordsInText(text, 'links', ['cart', 'shop', 'sell', 'sale', 'wish list', 'order', 'price', '$', 'ils', 'pay', 'store', 'buy', 'offers', 'product', 'deal', 'bag', 'PAYMENT', 'add to cart', 'add to basket', 'add to wishlist', 'track order', 'wishlist']);
+                var arr = CountWordsInText(text, 'links', ['cart', 'shop', 'sell', 'sale', 'wish list', 'order', 'pay', 'product', 'deal', 'PAYMENT', 'add to cart', 'add to wishlist', 'track order', 'wishlist']);
                 //              WriteToFile(arr,'meta-links-result.csv',message.Url);
 
                 arr.forEach(function(entry) {
@@ -445,7 +424,7 @@ pull.on('data', function T(m) {
 
                 text = findAllTextInDom(h1);
                 //  console.log("OK h1 - " + text);
-                var arr = CountWordsInText(text, 'h1', ['sale', 'wish list', 'order', 'ils', 'store']);
+                var arr = CountWordsInText(text, 'h1', ['sale']);
                 //            WriteToFile(arr,'meta-h1-result.csv',message.Url);
 
                 arr.forEach(function(entry) {
@@ -461,7 +440,7 @@ pull.on('data', function T(m) {
 
                 text = findAllTextInDom(h2);
                 //  console.log("OK h2 - " + text);
-                var arr = CountWordsInText(text, 'h2', ['sell', 'buy', 'product', 'item']);
+                var arr = CountWordsInText(text, 'h2', ['sell', 'product', 'item']);
                 //          WriteToFile(arr,'meta-h2-result.csv',message.Url);
 
                 arr.forEach(function(entry) {
@@ -477,7 +456,7 @@ pull.on('data', function T(m) {
 
                 text = findAllTextInDom(h3);
                 // console.log("OK h3 - " + text);
-                var arr = CountWordsInText(text, 'h3', ['shop', 'order', 'pay', 'buy', 'product']);
+                var arr = CountWordsInText(text, 'h3', ['shop', 'product']);
                 //                WriteToFile(arr,'meta-h3-result.csv',message.Url);
 
                 arr.forEach(function(entry) {
@@ -485,19 +464,7 @@ pull.on('data', function T(m) {
                 });
             }
 
-            /*           if (typeof footer1 === 'undefined')
-                          console.log(" error connect to  footer1 - " + message.Url); 
-                      else {
-                          text = findAllTextInDom(footer1); 
-                          // console.log("OK footer1 - " + text);
-                          var arr = CountWordsInText(text,'footer1');
-                          WriteToFile(arr,'meta-footer1-result.csv',message.Url);
 
-                               arr.forEach(function (entry) {
-                              features.list.push(entry);
-                          });
-                      }
-                      */
             {
                 text = message.Url;
                 var arr = CountWordsInText(text, 'URL', ['shop', 'product']);
@@ -507,15 +474,14 @@ pull.on('data', function T(m) {
                 });
             }
 
-
             //console.log(findAllClassesInDom(handler.dom));
 
-            if (typeof handler.dom === 'undefined') {
+           if (typeof handler.dom === 'undefined') {
                 console.log(" error searching in classes in handler.dom - " + message.Url);
                 Success = false;
             } else {
                 text = findAllClassesInDom(handler.dom);
-                var arr = CountWordsInText(text, 'classes', ['cart', 'shop', 'sell', 'sale', 'wish list', 'order', 'price', '$', 'ils', 'pay', 'store', 'buy', 'offers', 'deals', 'basket', 'product', 'item', 'bag', 'visa', 'paypal', 'PAYMENT', 'add to cart', 'add to basket', 'add to wishlist', 'track order', 'wishlist']);
+                var arr = CountWordsInText(text, 'classes', ['cart', 'shop', 'sell', 'price',  'pay', 'store','offers',  'basket', 'product', 'paypal', 'PAYMENT',  'wishlist']);
                 //            WriteToFile(arr,'meta-classes-result.csv',message.Url);
 
                 arr.forEach(function(entry) {
@@ -548,7 +514,7 @@ pull.on('data', function T(m) {
                 var classifyResult = MyClassifier.classify(JSON.parse(inners));
 
 
-                if (classifyResult > 0.50000000) {
+                if (classifyResult > 0.4) {
                     finalResult.isSellSite = "yes";
                 } else {
                     finalResult.isSellSite = "no";
